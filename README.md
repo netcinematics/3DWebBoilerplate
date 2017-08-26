@@ -2,9 +2,9 @@
 
 Your quick set up for developing the 3DWeb. This lightweight dev environment structure and process allows for better web animations as fast as possible. 
 
-It utilizes npm http-server, BabylonJS, ThreeJS, and in the not-so-distant past; jQuery, d3, and greensock. We've come a long way!
+It utilizes npm http-server, BabylonJS, ThreeJS, TweenJS, fontawesome. And in the not-so-distant past; jQuery, d3, and greensock. We've come a long way!
 
-Now the 3DWebPlatform is primed to utilize and innovate AR.js demos.
+Now it is primed to utilize and innovate AR.js demos.
 
 
 ## Get set up animating the 3DWeb as fast as possible.
@@ -94,11 +94,17 @@ Now the 3DWebPlatform is primed to utilize and innovate AR.js demos.
 
  - Check this out. After you duplicate blankProject123 to bigWigClient123, look inside!
 
- - beneath all of your template boilerplate is another empty folder called /scene123
+ - Beneath all of your template boilerplate is another empty folder called /scene123
 
- - duplicate that folder (which can contain scene boilerplates) to rapidly create scenes. Ding!
+ - Duplicate that folder (which can contain scene boilerplates) to rapidly create scenes. Ding!
 
- - reuse those scenes for all of the new scenes that you make, and you'll be stretching for nirvana.
+ - Even better, every scene comes with it's own index.html, so it can be accessed directly.
+
+ - And every scene.js can be included, into a composite scene structure - like a movie. : )
+
+ - Reuse those scenes for all of the new scenes that you make, and you'll be stretching toward nirvana.
+
+ - That is why...
 
 
 
