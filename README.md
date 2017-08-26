@@ -2,7 +2,7 @@
 
 Your quick set up for developing the 3DWeb. This lightweight dev environment structure and process allows for better web animations as fast as possible. 
 
-It utilizes npm http-server, BabylonJS, ThreeJS, TweenJS, fontawesome. And in the not-so-distant past; jQuery, d3, and greensock. We've come a long way!
+It utilizes npm http-server, BabylonJS, ThreeJS, TweenJS, AFrame, fontawesome. And in the not-so-distant past; jQuery, d3, and greensock. We've come a long way!
 
 Now it is primed to utilize and innovate AR.js demos.
 
