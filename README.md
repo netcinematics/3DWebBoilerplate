@@ -7,7 +7,7 @@ It utilizes npm http-server, BabylonJS, ThreeJS, and in the not-so-distant past;
 Now the 3DWebPlatform is primed to utilize and innovate AR.js demos.
 
 
-Get set up animating as fast as possible.
+## Get set up animating the 3DWeb as fast as possible.
 
 
 - BabylonJS Development Environment - it is very possible to develop Babylon with bigger IDE's - I don't want to.
@@ -17,7 +17,7 @@ Get set up animating as fast as possible.
 - This module is a template environment and a process. Which are second and third benefits toward maximum speed animations.
 
 
-##First install npm and then npm install -g http-server
+## First install npm and then npm install -g http-server
 
  - this will give you a very light-weight server which can be run over any directory.
 
@@ -28,7 +28,7 @@ Get set up animating as fast as possible.
  - allowing fast animation from a library-like lookup structure.
 
 
- ##Run-Server 
+ ## Run-Server 
 
  - in command line, in the root directory above your code, run: http-server
 
@@ -38,7 +38,7 @@ Get set up animating as fast as possible.
 
  
 
- ##Demos
+ ## Demos
 
  - The /demos folder is ideal you can iterate into the hundreds of examples in a lookup-like way.
 
@@ -49,9 +49,9 @@ Get set up animating as fast as possible.
  - A safety-net for tight-rope-walking, another benefit to speed animation. Highly effective. Hardy-har.
 
 
- #Animation-Process
+ # Animation-Process
 
- ##Templates123...
+ ## Templates123...
 
  - First look for /demos/template1, /template2, template3/...
 
@@ -64,7 +64,7 @@ Get set up animating as fast as possible.
  - See? Now you are ready to rock!
 
 
- ##Environment
+ ## Environment
 
  - There are important folders at root level within the demos /3d, /img, /lib, /license, and nuance for each.
 
@@ -81,7 +81,7 @@ Get set up animating as fast as possible.
  - And yes, it will change somewhere in the world by the next git push.
 
 
- ##Projects
+ ## Projects
 
  - Another nice thing about this structure is that it export to projects as fast as possible.
 
@@ -90,7 +90,7 @@ Get set up animating as fast as possible.
  - Process: run /demos when you are testing capabilities, then duplicate /blankProject123 for the things that you deliver to production.
 
  
- ##Scenes
+ ## Scenes
 
  - Check this out. After you duplicate blankProject123 to bigWigClient123, look inside!
 
@@ -102,7 +102,7 @@ Get set up animating as fast as possible.
 
 
 
- I hope this helps you. : )
+ *I hope this helps you.* : )
 
 
  MIT
