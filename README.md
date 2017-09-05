@@ -54,6 +54,10 @@ Now it is primed to utilize and innovate AR.js demos.
  ## Templates123...
 
  - First look for /demos/template1, /template2, template3/...
+ 
+ https://jsrenaissance.github.io/demos/template1/index.html
+ 
+ https://jsrenaissance.github.io/demos/template2/index.html
 
  - These are different versions of templates. Helpful? Yes.
 
