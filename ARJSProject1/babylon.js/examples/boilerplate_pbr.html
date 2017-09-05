@@ -1,0 +1,186 @@
+
+<!DOCTYPE html>
+<html>
+<head>
+	<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+	
+	<title>Babylon.js sample code</title>
+	<!-- Babylon.js -->
+	<!-- <script src="https://www.babylonjs.com/hand.minified-1.2.js"></script>
+	<script src="https://preview.babylonjs.com/cannon.js"></script>
+	<script src="https://preview.babylonjs.com/oimo.js"></script> -->
+	<script src="https://preview.babylonjs.com/babylon.js"></script>
+	<style>
+	html, body {
+		overflow: hidden;
+		width: 100%;
+		height: 100%;
+		margin: 0;
+		padding: 0;
+	}
+	
+	#renderCanvas {
+		width: 100%;
+		height: 100%;
+		touch-action: none;
+	}
+	</style>
+</head>
+<body>
+	<!-- <div id="canvasZone"> -->
+		<canvas id="renderCanvas"></canvas>
+	<!-- </div> -->
+	<script>
+	var canvas = document.getElementById("renderCanvas");
+	var engine = new BABYLON.Engine(canvas, true);
+	
+	var createScene = function () {
+		
+		// Set the scene and background color
+		var scene = new BABYLON.Scene(engine);
+		scene.clearColor = new BABYLON.Color3(0.2,0.3,0.4);
+		
+		// Create a camera
+		var camera = new BABYLON.ArcRotateCamera("Camera", 1.0, 1.0, 75, BABYLON.Vector3.Zero(), scene);
+		
+		// Attach camera to canvas
+		camera.attachControl(canvas, false);
+		
+		// Add a light
+		var light = new BABYLON.HemisphericLight("hemi",
+		new BABYLON.Vector3(0, 1, 0), scene);
+	
+
+        //PBR:
+
+
+	    // Environment Texture
+	    // var hdrTexture = new BABYLON.CubeTexture("./textures/skybox2", scene);
+	    var hdrTexture = new BABYLON.CubeTexture("./textures/starbox5", scene);
+		
+		// Skybox
+	    var hdrSkybox = BABYLON.Mesh.CreateBox("hdrSkyBox", 1000.0, scene);
+	    var hdrSkyboxMaterial = new BABYLON.PBRMaterial("skyBox", scene);
+	    hdrSkyboxMaterial.backFaceCulling = false;
+	    hdrSkyboxMaterial.reflectionTexture = hdrTexture.clone();
+	    hdrSkyboxMaterial.reflectionTexture.coordinatesMode = BABYLON.Texture.SKYBOX_MODE;
+		hdrSkyboxMaterial.microSurface = 1.0;
+		hdrSkyboxMaterial.cameraExposure = 0.6;
+		hdrSkyboxMaterial.cameraContrast = 1.6;
+	    hdrSkyboxMaterial.disableLighting = true;
+	    hdrSkybox.material = hdrSkyboxMaterial;
+	    hdrSkybox.infiniteDistance = true;
+
+        //starbox
+        // var starbox = BABYLON.Mesh.CreateBox("starbox", 1800.0, scene);
+        // var starboxMaterial = new BABYLON.StandardMaterial("starbox", scene);
+        // starboxMaterial.backFaceCulling = false;
+        // starboxMaterial.reflectionTexture = new BABYLON.CubeTexture("../3d/starbox/starbox5", scene);
+        // starboxMaterial.reflectionTexture.coordinatesMode = BABYLON.Texture.SKYBOX_MODE;
+        // starboxMaterial.diffuseColor = new BABYLON.Color3(0, 0, 0);
+        // starboxMaterial.specularColor = new BABYLON.Color3(0, 0, 0);
+        // starboxMaterial.disableLighting = true;
+        // starbox.material = starboxMaterial;
+
+
+
+			
+		//Creation of a material
+	    var materialSphere = new BABYLON.PBRMaterial("pbr", scene);
+	    materialSphere.reflectionTexture = hdrTexture.clone();
+	    materialSphere.albedoColor = new BABYLON.Color3(0.5, 0.5, 0.5);
+	    materialSphere.reflectivityColor = new BABYLON.Color3(0.5, 0.5, 0.5);
+		materialSphere.microSurface = 1;
+		materialSphere.directIntensity = 0;
+
+		//Attach the material to the sphere
+		var sphere = BABYLON.Mesh.CreateSphere("sphere", 20.0, 20.0, scene);
+		sphere.material = materialSphere;
+
+		//Change rendering group to not conflict with the skybox
+		sphere.renderingGroupId = 1;
+
+
+
+
+
+    var light0 = new BABYLON.PointLight("Omni0", new BABYLON.Vector3(0, 10, 0), scene);
+    var light1 = new BABYLON.PointLight("Omni1", new BABYLON.Vector3(0, 0, 10), scene);
+    var light2 = new BABYLON.PointLight("Omni2", new BABYLON.Vector3(10, 0, 0), scene);
+    light0.diffuse = new BABYLON.Color3(1, 0, 0);
+    light0.specular = new BABYLON.Color3(1, 0, 0);
+    //
+    light1.diffuse = new BABYLON.Color3(0, 1, 0);
+    light1.specular = new BABYLON.Color3(0, 1, 0);
+    //
+    light2.diffuse = new BABYLON.Color3(0, 0, 1);
+    light2.specular = new BABYLON.Color3(0, 0, 1);
+
+
+    var lightSphere0 = BABYLON.Mesh.CreateSphere("Sphere0", 16, 2, scene); // red
+    var lightSphere1 = BABYLON.Mesh.CreateSphere("Sphere1", 16, 2, scene); // green
+    var lightSphere2 = BABYLON.Mesh.CreateSphere("Sphere2", 16, 2, scene); // blue
+
+
+    var mirrorMaterial = new BABYLON.StandardMaterial("materialMirror", scene);
+    mirrorMaterial.diffuseColor = new BABYLON.Color3(0.2, 0.2, 0.2);
+    mirrorMaterial.reflectionTexture = new BABYLON.MirrorTexture("mirror", 1024, scene, true); //Create a mirror texture
+    mirrorMaterial.reflectionTexture.mirrorPlane = new BABYLON.Plane(0, -1.0, 0, -10.0);
+    // mirrorMaterial.reflectionTexture.renderList = reflectionMeshArray;
+    // mirrorMaterial.reflectionTexture.renderList = [materialSphere];
+    mirrorMaterial.reflectionTexture.renderList = [lightSphere0,lightSphere1,lightSphere2];
+    mirrorMaterial.reflectionTexture.level = 0.5;//level (0.0 > 1.0) of reflection
+
+    var ground = BABYLON.Mesh.CreateGround("ground", 80, 80, 1, scene, false);
+    ground.isPickable = false;
+    ground.material = mirrorMaterial;
+	ground.visibility = 0.9;
+    ground.position.y = -20;
+
+
+
+
+    var alpha = 0;
+    scene.beforeRender = function () {
+        light0.position = new BABYLON.Vector3(20 * Math.sin(alpha), 2, 20 * Math.cos(alpha));
+        light1.position = new BABYLON.Vector3(30 * Math.sin(alpha), 4, 30 * Math.cos(alpha));
+        light2.position = new BABYLON.Vector3(40 * Math.cos(alpha), 6, 40 * Math.sin(alpha));
+
+        lightSphere0.position = light0.position;
+        lightSphere1.position = light1.position;
+        lightSphere2.position = light2.position;
+
+        alpha += 0.03;
+    };
+
+		// Reflect the light off the ground to light the mesh bottom
+		// light.groundColor = new BABYLON.Color3(0.5, 0, 0.5);
+		
+		// Create a builtin shape
+		// var box = BABYLON.Mesh.CreateBox("mesh", 3, scene);
+		// box.showBoundingBox = true;
+		
+		// // Define a material
+		// var material = new BABYLON.StandardMaterial("std", scene);
+		// material.diffuseColor = new BABYLON.Color3(0.5, 0, 0.5);
+		
+		// Apply the material
+		// box.material = material;
+		
+		return scene;
+	};
+	
+	
+	var scene = createScene();
+	
+	engine.runRenderLoop(function () {
+		scene.render();
+	});
+	
+	// Resize
+	window.addEventListener("resize", function () {
+		engine.resize();
+	});
+	</script>
+</body>
+</html>
